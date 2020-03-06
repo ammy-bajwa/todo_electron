@@ -81,4 +81,5 @@ if (process.env.NODE_ENV !== "production") {
 
 ipcMain.on("todo:add", (event, todoText) => {
   mainBrowserWindow.webContents.send("todo:addToList", todoText);
+  addWindow.close();
 });

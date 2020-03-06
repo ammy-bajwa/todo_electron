@@ -7,13 +7,25 @@
   </head>
   <body>
     <h1>Todo App</h1>
-
+    <ul></ul>
     <script>
       const electron = require("electron");
       const { ipcRenderer } = electron;
+      let todos = [];
+      function renderTodoList() {
+        const list = document.querySelector("ul");
+        list.innerHTML = "";
+        todos.forEach(todo => {
+          let listItem = document.createElement("li");
+          listItem.innerText = todo;
+          list.appendChild(listItem);
+        });
+      }
 
       ipcRenderer.on("todo:addToList", (event, todoText) => {
         console.log("Main todoText", todoText);
+        todos.push(todoText);
+        renderTodoList();
       });
     </script>
   </body>
