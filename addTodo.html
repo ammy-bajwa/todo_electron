@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Todo</title>
+  </head>
+  <body>
+    <h2>Add Todo</h2>
+
+    <form>
+      <input type="text" autofocus />
+      <button type="submit">Add</button>
+    </form>
+
+    <script>
+      document.querySelector("form").addEventListener("submit", event => {
+        event.preventDefault();
+
+        let todoText = document.querySelector("input").value;
+        console.log(todoText);
+      });
+    </script>
+  </body>
+</html>
