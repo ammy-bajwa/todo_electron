@@ -23,8 +23,12 @@
       }
 
       ipcRenderer.on("todo:addToList", (event, todoText) => {
-        console.log("Main todoText", todoText);
         todos.push(todoText);
+        renderTodoList();
+      });
+
+      ipcRenderer.on("todo:clear", (event, todoText) => {
+        todos = [];
         renderTodoList();
       });
     </script>

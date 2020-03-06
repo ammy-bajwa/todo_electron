@@ -29,6 +29,7 @@ const addTodoWindow = () => {
     }
   });
   addWindow.loadURL(`file://${__dirname}/addTodo.html`);
+  addWindow.on("closed", () => (addWindow = null));
 };
 
 const menuTemplate = [
@@ -39,6 +40,12 @@ const menuTemplate = [
         label: "Add Todo",
         click() {
           addTodoWindow();
+        }
+      },
+      {
+        label: "ClearTodos",
+        click() {
+          mainBrowserWindow.webContents.send("todo:clear");
         }
       },
       {
@@ -62,6 +69,7 @@ if (process.env.NODE_ENV !== "production") {
   menuTemplate.push({
     label: "Tools",
     submenu: [
+      { role: "reload" },
       {
         label: "Developer_Tools",
         accelerator: (() => {
